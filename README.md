@@ -40,10 +40,18 @@ frontend/
 │
 ├── src/                       # Folder utama untuk kode sumber aplikasi
 │   ├── assets                 # Folder untuk file aset seperti gambar, font, dan media lainnya
-│   ├── components             # Folder untuk komponen React reusable
-│   ├── hooks                  # Folder untuk custom React hooks
-│   ├── pages                  # Folder untuk komponen halaman (route) dalam aplikasi
-│   ├── styles                 # Folder untuk file CSS/SCSS dan tema MUI
+│   ├── components/
+│   │   ├── Navbar.js          # Komponen navigasi
+│   │   └── Footer.js          # Komponen footer│
+├── hooks                      # Folder untuk custom React hooks
+│   ├── pages/
+│   │   ├── About.js           # Informasi tentang diri
+│   │   ├── Projects.js        # Menampilkan proyek
+│   │   ├── Skills.js          # Menampilkan keterampilan
+│   │   ├── Contact.js         # Informasi kontak
+│   │   └── Portfolio.js       # Halaman utama portfolio
+│   ├── styles/
+│   │   └── portfolio.scss     # Styling untuk halaman portfolio
 │   ├── App.js                 # Komponen utama aplikasi
 │   ├── index.js               # Entry point JavaScript untuk aplikasi (rendering React)
 │   ├── reportWebVitals.js     # File untuk mengukur performa aplikasi (opsional)
