@@ -21,9 +21,6 @@ Proyek ini adalah modul frontend portfolio dengan react
 
 ## Code Guide
 
-- validator pada route
-- controller fokus mengatur alur data dari req ke service
-- eksekusi db berada di service layer
 - named export dibandingkan export default kecuali untuk file dengan 1 fungsi/method/etc diletakkan diakhir baris
 - menggunakan commit convention
 - otomatis test sebelum commit (dihapus sementara)
