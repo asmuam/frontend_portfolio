@@ -1,0 +1,34 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "jest": true // Menambahkan dukungan untuk Jest
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:jest/recommended" // Menggunakan aturan rekomendasi dari Jest
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "jest" // Menambahkan plugin Jest
+    ],
+    "rules": {
+      // Aturan tambahan atau kustom bisa ditambahkan di sini
+      "react/react-in-jsx-scope": "off", // Tidak perlu import React di JSX dengan React 17+
+      "no-undef": "error" // Menghindari error no-undef
+    },
+    "settings": {
+      "react": {
+        "version": "detect" // Mendeteksi versi React yang digunakan
+      }
+    }
+  }
+  

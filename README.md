@@ -36,7 +36,7 @@ Proyek ini adalah modul backend sebagai baseline dengan fitur autentikasi penggu
 ```bash
 frontend/
 ├── .husky/                    # Hooks git untuk linting commit dan menjalankan skrip sebelum commit
-│   
+│
 ├── public/                    # Folder untuk file statis
 │   ├── index.html             # Entry point HTML untuk aplikasi
 │   └── favicon.ico            # Ikon favicon untuk aplikasi
@@ -58,6 +58,7 @@ frontend/
 │   ├── App.test.js            # Unit test untuk komponen App
 │
 ├── .env                       # File untuk konfigurasi lingkungan (environment variables)
+├── .eslintrc.json             # File untuk konfigurasi eslint
 ├── .gitignore                 # Mengabaikan file dan folder tertentu dari version control (Git)
 ├── .prettierrc                # Konfigurasi untuk format kode dengan Prettier
 ├── .commitlint.config.js      # Konfigurasi untuk validasi pesan commit dengan Commitlint
