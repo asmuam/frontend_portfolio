@@ -2,7 +2,7 @@
 
 ## Deskripsi
 
-Proyek ini adalah modul backend sebagai baseline dengan fitur autentikasi pengguna, manajemen data user, dan integrasi dengan Prisma sebagai ORM/ODM untuk manajemen database. Backend ini dibangun menggunakan Node.js dengan Express,dan bebereapa library pendukung serta dilengkapi dengan tes unit menggunakan Jest - Supertest.
+Proyek ini adalah modul frontend portfolio dengan react
 
 ## Style Guide
 
