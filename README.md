@@ -80,7 +80,7 @@ frontend/
 ### Kloning Repository:
 
 ```bash
-git clone https://github.com/asmuam/frontend.git
+git clone https://github.com/asmuam/frontend_portfolio.git
 cd frontend
 ```
 
