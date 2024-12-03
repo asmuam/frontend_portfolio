@@ -1,0 +1,9 @@
+16   109      74       33 (16+109+74 = 199)
+adib sulthon  muammal
+red : #C71010 #C74A6D 
+green : #10C710 #21C76D #4AC74A
+blue : #1010C7 #106DC7 #21C7C7
+purple : #6D4AC7
+black : #101010
+white/graysilver : #C7C7C7
+gold : #C7C710

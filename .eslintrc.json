@@ -23,7 +23,8 @@
     "rules": {
       // Aturan tambahan atau kustom bisa ditambahkan di sini
       "react/react-in-jsx-scope": "off", // Tidak perlu import React di JSX dengan React 17+
-      "no-undef": "error" // Menghindari error no-undef
+      "no-undef": "error", // Menghindari error no-undef
+      "no-unused-vars": "off"
     },
     "settings": {
       "react": {

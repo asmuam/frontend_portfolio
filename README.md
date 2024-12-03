@@ -40,19 +40,21 @@ frontend/
 │
 ├── src/                       # Folder utama untuk kode sumber aplikasi
 │   ├── assets                 # Folder untuk file aset seperti gambar, font, dan media lainnya
+|     ├── logo.svg
 │   ├── components/
-│   │   ├── Navbar.js          # Komponen navigasi
-│   │   └── Footer.js          # Komponen footer│
+│   │   ├── navbar.js          # Komponen navigasi
+│   │   └── footer.js          # Komponen footer│
 ├── hooks                      # Folder untuk custom React hooks
 │   ├── pages/
-│   │   ├── About.js           # Informasi tentang diri
-│   │   ├── Projects.js        # Menampilkan proyek
-│   │   ├── Skills.js          # Menampilkan keterampilan
-│   │   ├── Contact.js         # Informasi kontak
-│   │   └── Portfolio.js       # Halaman utama portfolio
+│   │   ├── about.js           # Informasi tentang diri
+│   │   ├── projects.js        # Menampilkan proyek
+│   │   ├── skills.js          # Menampilkan keterampilan
+│   │   ├── contact.js         # Informasi kontak
+│   │   └── portfolio.js       # Halaman utama portfolio
 │   ├── styles/
-│   │   └── portfolio.scss     # Styling untuk halaman portfolio
-│   ├── App.js                 # Komponen utama aplikasi
+│   │   ├── portfolio.scss     # Styling untuk halaman portfolio
+│   │   └── app.scss           # Styling untuk halaman portfolio
+│   ├── app.js                 # Komponen utama aplikasi
 │   ├── index.js               # Entry point JavaScript untuk aplikasi (rendering React)
 │   ├── reportWebVitals.js     # File untuk mengukur performa aplikasi (opsional)
 │   ├── service-worker.js      # File untuk service worker (PWA)
@@ -122,7 +124,12 @@ npm test
 ```
 
 ## Fitur Utama
-
+1. React Framework
+2. PWA
+3. MUI / Material UI Design System
+4. Sass/SCSS Styling Tools
+5. Jest Testing
+6. 
 ## Teknologi yang Digunakan
 
 ## Panduan Conventional Commits
