@@ -1,47 +1,59 @@
 import React from 'react';
-import { Drawer, Box, Button, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close'; // Ikon untuk Close (X)
+import { Drawer, Box, Button, IconButton, Typography, Divider } from '@mui/material';
+import { Brightness7, Brightness4, Close as CloseIcon } from '@mui/icons-material';
+import logo from '../assets/logo.svg';
 import PropTypes from 'prop-types';
-import logo from '../assets/logo.svg';  // Mengimpor logo
 
-const Sidebar = ({ open, toggleDrawer }) => {
+const Sidebar = ({ open, toggleDrawer, toggleDarkMode, isDarkMode }) => {
   return (
-    <Drawer anchor="right" open={open} onClose={toggleDrawer}>
-      <Box 
-        sx={{ 
-          width: 250, 
-          paddingTop: '20px', 
-          display: 'flex', 
-          flexDirection: 'column', 
-          alignItems: 'flex-start', // Align logo and text to the left
-          paddingLeft: '16px' // Optional: add padding to the left to align with buttons
-        }} 
-        role="presentation" 
-        onClick={toggleDrawer}
+    <Drawer open={open} onClose={toggleDrawer} anchor="right"> {/* Drawer anchored to the right */}
+      <Box
+        sx={{
+          width: 250, // Sidebar width, adjust as needed
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start', // Align everything to the left
+          padding: 2,
+          position: 'relative', // For absolute positioning of the close button
+        }}
       >
-        {/* Logo and Typography on the same line */}
-        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
-          <img src={logo} alt="Logo" style={{ height: '40px', marginRight: '8px' }} />
-          <Typography variant="h6">asmuammal</Typography>
+        {/* Close button */}
+        <IconButton
+          onClick={toggleDrawer}
+          sx={{ position: 'absolute', top: 10, right: 10 }} // Positioning the close button at top-right
+        >
+          <CloseIcon />
+        </IconButton>
+
+        {/* Logo and Typography in one row (flex display) */}
+        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, width: '100%' }}>
+          <img src={logo} alt="Logo" style={{ width: 50, height: 50, marginRight: 10 }} />
+          <Typography variant="h6" color="inherit">
+            asmuammal
+          </Typography>
         </Box>
-        
-        {/* Navigation buttons */}
-        <Button fullWidth onClick={() => { window.location.href = '/' }}>
+
+        <Divider sx={{ width: '100%', marginBottom: 2 }} />
+
+        {/* Menu items aligned to the left */}
+        <Button
+          className="sidebar-button"
+          href="/"
+          fullWidth
+          sx={{ marginBottom: 2, textAlign: 'left', justifyContent: 'flex-start' }} // Align text to the left
+        >
           Home
         </Button>
-        {/* <Button fullWidth onClick={() => { window.location.href = '/contact' }}>
-          Contact
-        </Button> */}
       </Box>
     </Drawer>
   );
 };
 
-// Add PropTypes validation for 'open' and 'toggleDrawer'
 Sidebar.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
+  toggleDarkMode: PropTypes.func.isRequired,
+  isDarkMode: PropTypes.bool.isRequired,
 };
 
 export default Sidebar;

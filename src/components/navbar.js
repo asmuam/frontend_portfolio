@@ -1,46 +1,64 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Button, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';  // Ikon untuk Close (X)
+import CloseIcon from '@mui/icons-material/Close';
+import { Brightness7, Brightness4 } from '@mui/icons-material';
+import logo from '../assets/logo.svg';
 import PropTypes from 'prop-types';
-import logo from '../assets/logo.svg';  // Mengimpor logo
 
-const Navbar = ({ toggleDrawer, drawerOpen }) => {
+const Navbar = ({ toggleDrawer, drawerOpen, toggleDarkMode, isDarkMode }) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));  // Cek apakah perangkat mobile
+  const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Detect mobile devices
 
   return (
-    <AppBar position="sticky">
+    <AppBar
+      component="header"
+      position="sticky"
+      sx={{ backgroundColor: theme.palette.primary.main }} // Set background to primary color
+    >
       <Toolbar>
-        {/* Logo yang rata kiri */}
-        <img src={logo} alt="Logo" style={{ height: '40px', marginRight: '16px' }} />
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          asmuammal
-        </Typography>
+        {/* Left section: Logo */}
+        <div className="navbar-logo" style={{ display: 'flex', alignItems: 'center' }}>
+          <img src={logo} alt="Logo" style={{ width: 40, height: 40, marginRight: 10 }} />
+          <Typography variant="h6" color="inherit">asmuammal</Typography>
+        </div>
 
-        {/* Tombol menu untuk mobile */}
-        {isMobile ? (
-          <IconButton edge="end" color="inherit" onClick={toggleDrawer}>
-            {drawerOpen ? <CloseIcon /> : <MenuIcon />} {/* Ganti icon tergantung state drawer */}
-          </IconButton>
-        ) : (
-          <div>
-            <Button color="inherit" href="/">
-              Home
-            </Button>
-            {/* <Button color="inherit" href="/contact">
-              Contact
-            </Button> */}
-          </div>
-        )}
+        {/* Center section: Empty space */}
+        <div style={{ flexGrow: 1 }}></div> {/* This takes up the remaining space */}
+
+        {/* Right section: Menu and Dark Mode toggle */}
+        <div className="navbar-buttons" style={{ display: 'flex', alignItems: 'center' }}>
+          {isMobile ? (
+            // On mobile: Hamburger menu + Dark Mode toggle on the left
+            <>
+              <IconButton onClick={toggleDrawer} color="inherit">
+                {drawerOpen ? <CloseIcon /> : <MenuIcon />}
+              </IconButton>
+              <IconButton onClick={toggleDarkMode} color="inherit">
+                {isDarkMode ? <Brightness7 /> : <Brightness4 />}
+              </IconButton>
+            </>
+          ) : (
+            // On desktop: Home button + Dark Mode toggle on the right
+            <>
+              <Button href="/">Home</Button>
+              <IconButton onClick={toggleDarkMode} color="inherit">
+                {isDarkMode ? <Brightness7 /> : <Brightness4 />}
+              </IconButton>
+            </>
+          )}
+        </div>
       </Toolbar>
     </AppBar>
   );
 };
 
+// Prop validation
 Navbar.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
   drawerOpen: PropTypes.bool.isRequired,
+  toggleDarkMode: PropTypes.func.isRequired,
+  isDarkMode: PropTypes.bool.isRequired,
 };
 
 export default Navbar;
