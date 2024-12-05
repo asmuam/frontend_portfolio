@@ -17,6 +17,24 @@ const colors = {
   gold: '#C7C710',
 };
 
+// Function to apply transparency to a color (color must be in hex)
+const addTransparency = (hexColor, alpha) => {
+  const r = parseInt(hexColor.substring(1, 3), 16);
+  const g = parseInt(hexColor.substring(3, 5), 16);
+  const b = parseInt(hexColor.substring(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+// Apply transparency to some of the colors
+const transparentColors = {
+  transparentLight: addTransparency(colors.whiteSilver, 0.1), // Light background transparency for dark mode
+  transparentDark: addTransparency(colors.black, 0.3),       // Dark background transparency for light mode
+  transparentHoverLight: addTransparency(colors.whiteSilver, 0.2), // Hover transparency for dark mode
+  transparentHoverDark: addTransparency(colors.black, 0.2),  // Hover transparency for light mode
+  transparentSelectedLight: addTransparency(colors.whiteSilver, 0.3), // Selected transparency for dark mode
+  transparentSelectedDark: addTransparency(colors.black, 0.2), // Selected transparency for light mode
+};
+
 // Create theme based on the mode (dark or light)
 const createAppTheme = (isDarkMode) => {
   return createTheme({
@@ -24,39 +42,78 @@ const createAppTheme = (isDarkMode) => {
       mode: isDarkMode ? 'dark' : 'light',
       primary: {
         main: colors.redDark,
+        contrastText: colors.whiteSilver,
       },
       secondary: {
         main: colors.gold,
-      },
-      background: {
-        default: colors.whiteSilver,
-        paper: colors.black,
-      },
-      text: {
-        primary: colors.whiteSilver,
-        secondary: colors.black,
-      },
-      action: {
-        active: colors.redMedium,
-        hover: colors.greenMedium,
+        contrastText: colors.black,
       },
       error: {
-        main: colors.redDark,
+        main: colors.redMedium,
+        contrastText: colors.whiteSilver,
+      },
+      warning: {
+        main: colors.gold,
+        contrastText: colors.black,
+      },
+      info: {
+        main: colors.blueMedium,
+        contrastText: colors.whiteSilver,
+      },
+      success: {
+        main: colors.greenMedium,
+        contrastText: colors.whiteSilver,
+      },
+      background: {
+        default: isDarkMode ? colors.black : colors.whiteSilver,
+      },
+      text: {
+        primary: isDarkMode ? colors.whiteSilver : colors.black,
+        secondary: isDarkMode ? colors.whiteSilver : colors.black,
+        disabled: isDarkMode ? transparentColors.transparentLight : transparentColors.transparentDark,
+      },
+      divider: isDarkMode ? colors.whiteSilver : colors.black,
+      action: {
+        active: isDarkMode ? colors.whiteSilver : colors.black,
+        hover: isDarkMode ? transparentColors.transparentHoverLight : transparentColors.transparentHoverDark,
+        selected: isDarkMode ? transparentColors.transparentSelectedLight : transparentColors.transparentSelectedDark,
+        disabled: isDarkMode ? transparentColors.transparentLight : transparentColors.transparentDark,
+        disabledBackground: isDarkMode ? transparentColors.transparentLight : transparentColors.transparentDark,
+      },
+    },
+    typography: {
+      fontFamily: "'Roboto', sans-serif",
+      h1: {
+        fontWeight: 700,
+        fontSize: '2.5rem',
+      },
+      h2: {
+        fontWeight: 700,
+        fontSize: '2rem',
+      },
+      h3: {
+        fontWeight: 500,
+        fontSize: '1.75rem',
+      },
+      h3700: {
+        fontWeight: 700,
+        fontSize: '1.75rem',
+      },
+      body1: {
+        fontWeight: 400,
+        fontSize: '1rem',
+      },
+      body2: {
+        fontWeight: 400,
+        fontSize: '0.875rem',
       },
     },
     components: {
+      // Navbar (AppBar)
       MuiAppBar: {
         styleOverrides: {
           root: {
-            backgroundColor: isDarkMode ? colors.black : colors.whiteSilver,
-          },
-        },
-      },
-      MuiDrawer: {
-        styleOverrides: {
-          paper: {
-            backgroundColor: isDarkMode ? colors.black : colors.whiteSilver,
-            color: isDarkMode ? colors.whiteSilver : colors.black,
+            backgroundColor: colors.redDark,
           },
         },
       },

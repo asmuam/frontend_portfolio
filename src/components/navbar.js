@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Button, useMediaQuery, useTheme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import { Brightness7, Brightness4 } from '@mui/icons-material';
 import logo from '../assets/logo.svg';
 import PropTypes from 'prop-types';
@@ -14,13 +13,14 @@ const Navbar = ({ toggleDrawer, drawerOpen, toggleDarkMode, isDarkMode }) => {
     <AppBar
       component="header"
       position="sticky"
-      sx={{ backgroundColor: theme.palette.primary.main }} // Set background to primary color
     >
       <Toolbar>
         {/* Left section: Logo */}
         <div className="navbar-logo" style={{ display: 'flex', alignItems: 'center' }}>
           <img src={logo} alt="Logo" style={{ width: 40, height: 40, marginRight: 10 }} />
-          <Typography variant="h6" color="inherit">asmuammal</Typography>
+          <Typography variant="h3700" sx={{ color: theme.palette.primary.contrastText }}>
+            asmuammal
+          </Typography>
         </div>
 
         {/* Center section: Empty space */}
@@ -31,18 +31,20 @@ const Navbar = ({ toggleDrawer, drawerOpen, toggleDarkMode, isDarkMode }) => {
           {isMobile ? (
             // On mobile: Hamburger menu + Dark Mode toggle on the left
             <>
-              <IconButton onClick={toggleDrawer} color="inherit">
-                {drawerOpen ? <CloseIcon /> : <MenuIcon />}
+              <IconButton onClick={toggleDrawer} sx={{ color: theme.palette.primary.contrastText }}>
+                {drawerOpen ? null : <MenuIcon />}
               </IconButton>
-              <IconButton onClick={toggleDarkMode} color="inherit">
+              <IconButton onClick={toggleDarkMode} sx={{ color: theme.palette.primary.contrastText }}>
                 {isDarkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
             </>
           ) : (
             // On desktop: Home button + Dark Mode toggle on the right
             <>
-              <Button href="/">Home</Button>
-              <IconButton onClick={toggleDarkMode} color="inherit">
+              <Button href="/" sx={{ color: theme.palette.primary.contrastText }}>
+                Home
+              </Button>
+              <IconButton onClick={toggleDarkMode} sx={{ color: theme.palette.primary.contrastText }}>
                 {isDarkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
             </>
