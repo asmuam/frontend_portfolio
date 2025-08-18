@@ -1,41 +1,68 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Drawer, CssBaseline, Container, Box } from '@mui/material';
+import { Container, Box, CssBaseline, ThemeProvider } from '@mui/material';
 import Navbar from './components/navbar.js';
 import Footer from './components/footer.js';
-import Sidebar from './components/sidebar.js';  // Import komponen Drawer terpisah
-import Home from './pages/home.js';
-import Contact from './pages/contact.js';
-import './styles/app.scss';
+import Sidebar from './components/sidebar.js';
+import HomeWIP from './pages/home-wip.js';
+import { createAppTheme } from './themes/theme.js';
 
 const App = () => {
+  const savedMode = localStorage.getItem('darkMode');
+  const [isDarkMode, setIsDarkMode] = useState(savedMode === 'true');
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
+  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+  const toggleDarkMode = () => {
+    setIsDarkMode(prevMode => {
+      const newMode = !prevMode;
+      // Simpan preferensi ke localStorage
+      localStorage.setItem('darkMode', newMode);
+      return newMode;
+    });
   };
+  // Generate the theme
+  const theme = createAppTheme(isDarkMode);
 
   return (
     <Router>
-      <div className="main-content">
+      <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Navbar toggleDrawer={toggleDrawer} drawerOpen={drawerOpen} />
-        
-        {/* Komponen Drawer */}
-        <Sidebar open={drawerOpen} toggleDrawer={toggleDrawer} />
+        {/* Main content container with flexbox */}
+        <div
+          className={`main-content ${isDarkMode ? 'dark-mode' : ''}`}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh', // Full height of the viewport
+            maxWidth: '100%',   // Prevent exceeding device width
+            overflowX: 'hidden', // Prevent horizontal scroll
+          }}
+        >
+          {/* Navbar (Header) */}
+          <Navbar
+            toggleDrawer={toggleDrawer}
+            drawerOpen={drawerOpen}
+            toggleDarkMode={toggleDarkMode}
+            isDarkMode={isDarkMode}
+          />
 
-        <Container>
-          <Box component="main" sx={{ mt: 2 }}>
+          {/* Sidebar */}
+          <Sidebar
+            open={drawerOpen}
+            toggleDrawer={toggleDrawer}
+          />
+          {/* Main Content (flex-grow ensures it takes remaining space) */}
+          <Box sx={{ flexGrow: 1 }}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              {/* <Route path="/contact" element={<Contact />} /> */}
+              <Route path="/" element={<HomeWIP />} />
             </Routes>
           </Box>
-        </Container>
-
-        <Footer />
-      </div>
-    </Router>
+          {/* Footer */}
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </Router >
   );
 };
 
