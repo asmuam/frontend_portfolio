@@ -31,9 +31,7 @@ Proyek ini adalah modul frontend portfolio dengan react
 ## Struktur Folder
 
 ```bash
-frontend/
-├── .husky/                    # Hooks git untuk linting commit dan menjalankan skrip sebelum commit
-│
+frontend/│
 ├── public/                    # Folder untuk file statis
 │   ├── index.html             # Entry point HTML untuk aplikasi
 │   └── favicon.ico            # Ikon favicon untuk aplikasi
@@ -93,6 +91,11 @@ npm install
 npm prepare
 ```
 
+jika terdapat vulnerability cek dengan
+```bash
+npm audit --production
+```
+
 ### Konfigurasi Variabel Lingkungan
 
 Buat file .env di root proyek dan tambahkan variabel lingkungan yang dibutuhkan seperti koneksi database dan secret key JWT:
@@ -127,9 +130,10 @@ npm test
 1. React Framework
 2. PWA
 3. MUI / Material UI Design System
-4. Sass/SCSS Styling Tools
-5. Jest Testing
+4. Jest Testing
+5. 
 6. 
+
 ## Teknologi yang Digunakan
 
 ## Panduan Conventional Commits

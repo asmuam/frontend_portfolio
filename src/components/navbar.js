@@ -1,5 +1,14 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Button, useMediaQuery, useTheme } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Button,
+  useMediaQuery,
+  useTheme,
+  Box,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Brightness7, Brightness4 } from '@mui/icons-material';
 import logo from '../assets/logo.svg';
@@ -10,46 +19,68 @@ const Navbar = ({ toggleDrawer, drawerOpen, toggleDarkMode, isDarkMode }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Detect mobile devices
 
   return (
-    <AppBar
-      component="header"
-      position="sticky"
-    >
+    <AppBar component="header" position="sticky">
       <Toolbar>
         {/* Left section: Logo */}
-        <div className="navbar-logo" style={{ display: 'flex', alignItems: 'center' }}>
-          <img src={logo} alt="Logo" style={{ width: 40, height: 40, marginRight: 10 }} />
-          <Typography variant="h3700" sx={{ color: theme.palette.primary.contrastText }}>
+        <Box
+          className="navbar-logo"
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          <img
+            src={logo}
+            alt="Logo"
+            style={{ width: 40, height: 40, marginRight: 10 }}
+          />
+          <Typography
+            variant="h4"
+            sx={{ color: theme.palette.primary.contrastText }}
+          >
             asmuammal
           </Typography>
-        </div>
+        </Box>
 
         {/* Center section: Empty space */}
-        <div style={{ flexGrow: 1 }}></div> {/* This takes up the remaining space */}
+        <Box sx={{ flexGrow: 1 }} />
 
         {/* Right section: Menu and Dark Mode toggle */}
-        <div className="navbar-buttons" style={{ display: 'flex', alignItems: 'center' }}>
+        <Box
+          className="navbar-buttons"
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
           {isMobile ? (
             // On mobile: Hamburger menu + Dark Mode toggle on the left
             <>
-              <IconButton onClick={toggleDrawer} sx={{ color: theme.palette.primary.contrastText }}>
+              <IconButton
+                onClick={toggleDrawer}
+                sx={{ color: theme.palette.primary.contrastText }}
+              >
                 {drawerOpen ? null : <MenuIcon />}
               </IconButton>
-              <IconButton onClick={toggleDarkMode} sx={{ color: theme.palette.primary.contrastText }}>
+              <IconButton
+                onClick={toggleDarkMode}
+                sx={{ color: theme.palette.primary.contrastText }}
+              >
                 {isDarkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
             </>
           ) : (
             // On desktop: Home button + Dark Mode toggle on the right
             <>
-              <Button href="/" sx={{ color: theme.palette.primary.contrastText }}>
+              <Button
+                href="/"
+                sx={{ color: theme.palette.primary.contrastText }}
+              >
                 Home
               </Button>
-              <IconButton onClick={toggleDarkMode} sx={{ color: theme.palette.primary.contrastText }}>
+              <IconButton
+                onClick={toggleDarkMode}
+                sx={{ color: theme.palette.primary.contrastText }}
+              >
                 {isDarkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
             </>
           )}
-        </div>
+        </Box>
       </Toolbar>
     </AppBar>
   );

@@ -1,24 +1,40 @@
 import React from 'react';
-import { useTheme, Drawer, Box, Button, IconButton, Typography, Divider } from '@mui/material';
-import { Brightness7, Brightness4, Close as CloseIcon } from '@mui/icons-material';
+import {
+  useTheme,
+  Drawer,
+  Box,
+  Button,
+  IconButton,
+  Typography,
+  Divider,
+} from '@mui/material';
+import {
+  Brightness7,
+  Brightness4,
+  Close as CloseIcon,
+} from '@mui/icons-material';
 import logo from '../assets/logo.svg';
 import PropTypes from 'prop-types';
 
-const Sidebar = ({ open, toggleDrawer }) => {
+const Sidebar = ({ open, toggleDrawer, toggleDarkMode, isDarkMode }) => {
   const theme = useTheme();
 
   return (
     <Drawer open={open} onClose={toggleDrawer} anchor="right">
       <Box
         sx={{
-          width: 250, // Sidebar width, adjust as needed
+          width: 270,
+          minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start', // Align everything to the left
-          padding: 2,
-          backgroundColor: theme.palette.background.default, // Background based on theme
-          color: theme.palette.text.primary, // Text color based on theme
-          position: 'relative', // For absolute positioning of the close button
+          alignItems: 'flex-start',
+          p: 3,
+          backgroundColor: theme.palette.background.default,
+          color: theme.palette.text.primary,
+          position: 'relative',
+          boxShadow: 6,
+          borderTopLeftRadius: 16,
+          borderBottomLeftRadius: 16,
         }}
       >
         {/* Close button */}
@@ -26,44 +42,78 @@ const Sidebar = ({ open, toggleDrawer }) => {
           onClick={toggleDrawer}
           sx={{
             position: 'absolute',
-            top: 10,
-            right: 10,
-            color: theme.palette.text.primary, // Close button color based on theme
+            top: 16,
+            right: 16,
+            color: theme.palette.text.primary,
           }}
         >
           <CloseIcon />
         </IconButton>
 
-        {/* Logo and Typography in one row (flex display) */}
-        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, width: '100%' }}>
-          <img src={logo} alt="Logo" style={{ width: 50, height: 50, marginRight: 10 }} />
-          <Typography variant="h3700" sx={{ color: theme.palette.text.primary }}>
+        {/* Logo and Typography */}
+        <Box
+          sx={{ display: 'flex', alignItems: 'center', mb: 3, width: '100%' }}
+        >
+          <img
+            src={logo}
+            alt="Logo"
+            style={{ width: 48, height: 48, marginRight: 12 }}
+          />
+          <Typography variant="h4" sx={{ color: theme.palette.text.primary }}>
             asmuammal
           </Typography>
         </Box>
 
-        <Divider sx={{ width: '100%', marginBottom: 2 }} />
+        <Divider sx={{ width: '100%', mb: 3 }} />
 
-        {/* Menu items aligned to the left */}
+        {/* Menu items */}
         <Button
           className="sidebar-button"
           href="/"
           fullWidth
           sx={{
-            marginBottom: 2,
+            mb: 2,
             textAlign: 'left',
             justifyContent: 'flex-start',
-            color: theme.palette.text.primary, // Text color based on theme
-            fontSize: '2rem', // Set a specific font size just for this Button
-            fontWeight: 'bold', // Set font weight
-            textTransform: 'none', // Avoid uppercase text
+            color: theme.palette.text.primary,
+            fontSize: '1.25rem',
+            textTransform: 'none',
+            borderRadius: 2,
+            transition: 'background 0.2s',
+            backgroundColor: theme.palette.background,
             '&:hover': {
-              backgroundColor: theme.palette.action.hover, // Hover effect
+              backgroundColor: theme.palette.action.hover, // gunakan dari theme
             },
           }}
         >
           Home
         </Button>
+
+        <Box sx={{ flexGrow: 1 }} />
+
+        {/* Toggle Dark Mode */}
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            mt: 2,
+          }}
+        >
+          <IconButton
+            onClick={toggleDarkMode}
+            sx={{
+              color: theme.palette.text.primary,
+              backgroundColor: theme.palette.background,
+              borderRadius: 2,
+              '&:hover': {
+                backgroundColor: theme.palette.action.hover, // gunakan dari theme
+              },
+            }}
+          >
+            {isDarkMode ? <Brightness7 /> : <Brightness4 />}
+          </IconButton>
+        </Box>
       </Box>
     </Drawer>
   );
@@ -72,6 +122,8 @@ const Sidebar = ({ open, toggleDrawer }) => {
 Sidebar.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
+  toggleDarkMode: PropTypes.func.isRequired,
+  isDarkMode: PropTypes.bool.isRequired,
 };
 
 export default Sidebar;

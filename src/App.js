@@ -5,6 +5,7 @@ import Navbar from './components/navbar.js';
 import Footer from './components/footer.js';
 import Sidebar from './components/sidebar.js';
 import HomeWIP from './pages/home-wip.js';
+import FontsDemo from './pages/fonts-demo.js';
 import { createAppTheme } from './themes/theme.js';
 
 const App = () => {
@@ -14,7 +15,7 @@ const App = () => {
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
   const toggleDarkMode = () => {
-    setIsDarkMode(prevMode => {
+    setIsDarkMode((prevMode) => {
       const newMode = !prevMode;
       // Simpan preferensi ke localStorage
       localStorage.setItem('darkMode', newMode);
@@ -29,13 +30,13 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {/* Main content container with flexbox */}
-        <div
+        <Box
           className={`main-content ${isDarkMode ? 'dark-mode' : ''}`}
-          style={{
+          sx={{
             display: 'flex',
             flexDirection: 'column',
             minHeight: '100vh', // Full height of the viewport
-            maxWidth: '100%',   // Prevent exceeding device width
+            maxWidth: '100%', // Prevent exceeding device width
             overflowX: 'hidden', // Prevent horizontal scroll
           }}
         >
@@ -51,18 +52,21 @@ const App = () => {
           <Sidebar
             open={drawerOpen}
             toggleDrawer={toggleDrawer}
+            toggleDarkMode={toggleDarkMode}
+            isDarkMode={isDarkMode}
           />
           {/* Main Content (flex-grow ensures it takes remaining space) */}
           <Box sx={{ flexGrow: 1 }}>
             <Routes>
-              <Route path="/" element={<HomeWIP />} />
+              <Route path="/" element={<FontsDemo />} />
+              {/* <Route path="/" element={<HomeWIP />} /> */}
             </Routes>
           </Box>
           {/* Footer */}
           <Footer />
-        </div>
+        </Box>
       </ThemeProvider>
-    </Router >
+    </Router>
   );
 };
 
